@@ -5,7 +5,7 @@ I been downloading videos from various sources...😉
 But they fail to have a thumbnail
 
 WHICH Model I will be using?
-Suprisingly I thought of not use any AI model to pick a thumbnail.
+Surprisingly I thought of not use any AI model to pick a thumbnail.
 insted to use a very old friend called FFMPEG
 
 So this not first time I am trying to use FFMPEG , but first time to get a thumbnail selector
