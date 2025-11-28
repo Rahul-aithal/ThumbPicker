@@ -1,0 +1,23 @@
+package video
+
+import "fmt"
+
+func Service(path string,options int){
+	metap := &Meta{}	
+	metap.FilePath = path
+	metap.NumberOfFrames = options
+	err :=	MetaData(metap)
+	if err!=nil{
+		panic("Error while getting meta data")
+	}
+	err1 :=	Generator(metap)
+	if err1!=nil{
+		panic("Error while Generator")
+	}
+	err2 :=	Extractor(metap)	
+	if err2!=nil{
+		fmt.Println(err2)
+		panic("Error while Extractor")
+	}
+	fmt.Println("The location of thumbnail mentioned: ",metap.ThumbLocation)
+}
