@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/Rahul-aithal/ThumbSelector/internals/video"
+	"github.com/Rahul-aithal/ThumbPicker/internals/video"
 )
 
 
