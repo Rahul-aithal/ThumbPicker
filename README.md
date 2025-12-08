@@ -128,7 +128,7 @@ ThumbSelector/
 - **Part 3:** Concurrency & Optimization.
 - **Part 4:** Full service deployment.
 
-Follow the series on [Medium](https://medium.com/@rahul.aithal) or [Hashnode](https://rahul-aithal.hashnode.dev) for updates.
+Follow the series on [Medium](https://medium.com/@aithalrahul34) .
 
 ## 🤝 Contributing
 1. Fork the repo.
