@@ -1,0 +1,18 @@
+package components
+
+templ Base() {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<title>ThumbPicker</title>
+			<link rel="stylesheet" href="/static/main.css"/>
+		</head>
+		<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
+		<body>
+			{ children... }
+			<script src="/static/main.js" defer></script>
+		</body>
+	</html>
+}

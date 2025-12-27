@@ -1,8 +1,11 @@
 package video
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
-func Service(path string, options int) {
+func Service(path string, options int) *Meta {
 	metap := &Meta{}
 	metap.FilePath = path
 	metap.NumberOfFrames = options
@@ -19,12 +22,13 @@ func Service(path string, options int) {
 		fmt.Println(err2)
 		panic("Error while Extractor")
 	}
-	metap.SeletedThumbIndex = 1
-	err3 := Combainer(metap)
-	if err3 != nil {
-		fmt.Println(err3)
-		panic("Error while Combaining")
-	}
+	// metap.SeletedThumbIndex = 1
+	// err3 := Combainer(metap)
+	// if err3 != nil {
+	// 	fmt.Println(err3)
+	// 	panic("Error while Combaining")
+	// }
 
-	fmt.Println("The location of thumbnail mentioned: ", metap.ThumbLocation)
+	log.Println("The location of thumbnail mentioned: ", metap.ThumbLocation)
+	return metap
 }

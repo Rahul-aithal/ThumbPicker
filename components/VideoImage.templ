@@ -1,0 +1,26 @@
+package components
+
+import "github.com/Rahul-aithal/ThumbPicker/common/types"
+
+templ VideoImage(videoSrc string, thumbs []types.ThumbData) {
+	@Base() {
+		<div class="thumbnails">
+			<div class="video-wrapper">
+				<video muted controls>
+					<source src={ videoSrc }/>
+				</video>
+			</div>
+			<div class="thumb-grid">
+				for _,t:=range thumbs {
+					<button hx-post="/downloadVideo" hx-vals={ `{inex: ${t.Index}}` } class="thumb-item">
+						<img src={ t.Path }/>
+						<div class="thumb-meta">
+							<span class="thumb-time">{ t.TimeStamp }</span>
+							<span class="thumb-index">{ t.Index }</span>
+						</div>
+					</button>
+				}
+			</div>
+		</div>
+	}
+}

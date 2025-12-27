@@ -1,0 +1,78 @@
+/* Root container */
+.thumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Video section */
+.video-wrapper {
+  width: 100%;
+}
+
+.video-wrapper video {
+  width: 100%;
+  max-height: 400px;
+  border-radius: 8px;
+  background: #000;
+}
+
+/* Thumbnails grid */
+.thumb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+/* Thumbnail button */
+.thumb-item {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 6px;
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
+}
+
+.thumb-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+.thumb-item:active {
+  transform: scale(0.98);
+}
+
+/* Thumbnail image */
+.thumb-item img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Metadata container */
+.thumb-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  line-height: 1;
+}
+
+/* Timestamp */
+.thumb-time {
+  font-weight: 500;
+  color: #111;
+}
+
+/* Index / description */
+.thumb-index {
+  color: #666;
+}

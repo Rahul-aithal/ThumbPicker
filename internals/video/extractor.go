@@ -18,10 +18,6 @@ func Extractor(meta *Meta) error {
 		return err
 	}
 
-	directory, err = filepath.Abs(directory)
-	if err != nil {
-		return err
-	}
 	fileLocs := make([]string, 0, meta.NumberOfFrames)
 
 	for i, val := range meta.TimeStamps {

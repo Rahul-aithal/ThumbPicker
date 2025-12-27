@@ -1,0 +1,17 @@
+package components
+
+templ Home() {
+	@Base() {
+		<form
+			hx-encoding="multipart/form-data"
+			hx-post="/video"
+			_="on htmx:xhr:progress(loaded, total) set #progress.value to (loaded/total)*100"
+		>
+			<input type="file" name="file" accept=".mp4"/>
+			<button>
+				Upload
+			</button>
+			<progress id="progress" value="0" max="100"></progress>
+		</form>
+	}
+}
