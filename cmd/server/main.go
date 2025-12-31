@@ -19,16 +19,32 @@ import (
 // Posted by Darien Miller
 // Retrieved 2025-12-14, License - CC BY-SA 4.0
 
-
 func main() {
-	const DB_URL  = "postgres://postgress:admin@localhost:5432/thumbpicker"
+	const (
+		host     = "localhost"
+		port     = 5432
+		user     = "postgres"
+		password = "admin"
+		dbname   = "thumbpicker"
+	)
+
+	// Create the connection string
+	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
+		"password=%s dbname=%s sslmode=disable",
+		host, port, user, password, dbname)
+
 	ctx := context.Background()
-	conn, err := pgxpool.New(ctx, DB_URL)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
-			os.Exit(1)
-		}
-		defer conn.Close()
+	conn, err := pgxpool.New(ctx, psqlInfo)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
+		os.Exit(1)
+	}
+	err = conn.Ping(ctx)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
+		os.Exit(1)
+	}
+	defer conn.Close()
 	queries := db.New(conn)
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)

@@ -13,9 +13,9 @@ import (
 )
 
 const createVideo = `-- name: CreateVideo :one
-INSERT INTO Video(
- src,thumbnails_count,dur
-) VALUES ( $1,$2,$3)
+INSERT INTO video(
+ src,thumbnails_count,dur,thumbnail
+) VALUES ( $1,$2,$3,NULL)
 RETURNING id, src, thumbnails_count, dur, thumbnail
 `
 
@@ -39,7 +39,7 @@ func (q *Queries) CreateVideo(ctx context.Context, arg CreateVideoParams) (Video
 }
 
 const getVideo = `-- name: GetVideo :one
-SELECT id, src, thumbnails_count, dur, thumbnail FROM Video
+SELECT id, src, thumbnails_count, dur, thumbnail FROM video
 WHERE id = $1 LIMIT 1
 `
 
@@ -57,7 +57,7 @@ func (q *Queries) GetVideo(ctx context.Context, id uuid.UUID) (Video, error) {
 }
 
 const updateVideo = `-- name: UpdateVideo :one
-UPDATE Video
+UPDATE video
   set thumbnail= $2
 WHERE id = $1
 RETURNING id, src, thumbnails_count, dur, thumbnail

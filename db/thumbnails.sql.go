@@ -14,7 +14,7 @@ import (
 
 const getAllThubmsOfVideo = `-- name: GetAllThubmsOfVideo :many
 SELECT id, src, video, timestamp, idx
-FROM Thumbnails AS t
+FROM thumbnails AS t
 WHERE t.video = $1
 `
 
@@ -45,7 +45,7 @@ func (q *Queries) GetAllThubmsOfVideo(ctx context.Context, video uuid.UUID) ([]T
 }
 
 const getThumb = `-- name: GetThumb :one
-SELECT id, src, video, timestamp, idx FROM Thumbnails
+SELECT id, src, video, timestamp, idx FROM thumbnails
 WHERE id = $1 LIMIT 1
 `
 
@@ -63,7 +63,7 @@ func (q *Queries) GetThumb(ctx context.Context, id uuid.UUID) (Thumbnail, error)
 }
 
 const insertThumbs = `-- name: InsertThumbs :one
-INSERT INTO Thumbnails(
+INSERT INTO thumbnails(
  src,video,timestamp,idx
 ) VALUES ( $1,$2,$3,$4)
 RETURNING id, src, video, timestamp, idx

@@ -7,7 +7,7 @@ templ VideoImage(videoSrc string, thumbs []types.ThumbData) {
 		<div class="thumbnails">
 			<div class="video-wrapper">
 				<video muted controls>
-					<source src={ videoSrc }/>
+					<source src={ "/" + videoSrc }/>
 				</video>
 			</div>
 			<div class="thumb-grid">

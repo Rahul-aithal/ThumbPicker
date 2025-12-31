@@ -1,4 +1,4 @@
-.PHONY: all test 
+.PHONY: all test
 BINARY_NAME := thumbpicker
 PKG := ./cmd/server/main.go
 
@@ -7,10 +7,14 @@ build:
 	templ generate && \
 	go build -o $(BINARY_NAME) $(PKG)
 
-.PHONY: run
-run:build
+.PHONY: run_dev
+run_dev:build
 	./$(BINARY_NAME)
-	
+
+.PHONY: run
+run:
+	./$(BINARY_NAME)
+
 .PHONY: clean
 clean:
 	rm -f $(BINARY_NAME)
@@ -23,11 +27,10 @@ tidy:
 build-linux:
 	GOOS=linux GOARCH=amd64 go build -o $(BINARY_NAME)-linux $(PKG)
 
-.PHONY: help 
+.PHONY: help
 help:
 	@echo "  build         Compile the application"
 	@echo "  run           Generate templates and run the application"
 	@echo "  tidy          Tidy go.mod file"
 	@echo "  clean         Remove artifacts"
 	@echo "  build-linux   Build for Linux (amd64)"
-

@@ -1,15 +1,15 @@
 -- name: GetVideo :one
-SELECT * FROM Video
+SELECT * FROM video
 WHERE id = $1 LIMIT 1;
 
 -- name: CreateVideo :one
-INSERT INTO Video(
- src,thumbnails_count,dur
-) VALUES ( $1,$2,$3)
+INSERT INTO video(
+ src,thumbnails_count,dur,thumbnail
+) VALUES ( $1,$2,$3,NULL)
 RETURNING *;
 
 -- name: UpdateVideo :one
-UPDATE Video
+UPDATE video
   set thumbnail= $2
 WHERE id = $1
 RETURNING *;

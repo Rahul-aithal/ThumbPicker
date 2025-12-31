@@ -16,7 +16,7 @@ func Routers(q *db.Queries) *chi.Mux {
 	r := chi.NewRouter()
 	h := handlers.NewHandler(q)
 	r.Get("/", h.Home)
-	r.Get("/video/{id}", h.Video)
+	r.Get("/video/{id}", h.VideoPage)
 	r.Post("/video", h.Video)
 	// r.Post("/downloadVideo/")
 	return r

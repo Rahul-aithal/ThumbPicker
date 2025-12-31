@@ -45,29 +45,24 @@ func (h *handler) Video(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Printf("Starting to Processs the video: %s", fileName)
 	result := video.Service(filePath, 8)
-	video,err:=h.q.CreateVideo(r.Context(),db.CreateVideoParams{
-		Src:  result.FilePath,
-		Dur: strconv.FormatFloat(result.Duration,'f',-1,64) ,
-		ThumbnailsCount:  int32(result.NumberOfFrames),
+	video, err := h.q.CreateVideo(r.Context(), db.CreateVideoParams{
+		Src:             result.FilePath,
+		Dur:             strconv.FormatFloat(result.Duration, 'f', -1, 64),
+		ThumbnailsCount: int32(result.NumberOfFrames),
 	})
-	if err!=nil{
-		log.Fatal(err,"While Inserting  video")
+	if err != nil {
+		log.Fatal(err, " While Inserting  video")
 	}
 	for i := range result.NumberOfFrames {
-		h.q.InsertThumbs(r.Context(),db.InsertThumbsParams{
-			Src:  result.ThumbLocation[i],
-			Video: video.ID,
-			Timestamp: strconv.FormatFloat(result.TimeStamps[i],'f',-1,64) ,
-			Idx: pgtype.Int4{Int32: int32(i),Valid: true},
-	 })
-
+		_, err := h.q.InsertThumbs(r.Context(), db.InsertThumbsParams{
+			Src:       result.ThumbLocation[i],
+			Video:     video.ID,
+			Timestamp: strconv.FormatFloat(result.TimeStamps[i], 'f', -1, 64),
+			Idx:       pgtype.Int4{Int32: int32(i), Valid: true},
+		})
+		if err != nil {
+			log.Fatal(err, " While Inserting  thubmnail")
+		}
 	}
-	http.Redirect(w, r, "/video/"+video.ID.String(), http.StatusFound)
-	// components.VideoImage(result.FilePath, thumbDisplay).Render(r.Context(), w)
+	w.Header().Add("HX-Redirect", "/video/"+video.ID.String())
 }
-// thumbDisplay := make([]types.ThumbData, 0)
-// thumbDisplay = append(thumbDisplay, types.ThumbData{
-// 			Path:      result.ThumbLocation[i],
-// 			TimeStamp: result.TimeStamps[i],
-// 			Index:     int(i),
-// 		})
