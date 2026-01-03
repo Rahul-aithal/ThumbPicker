@@ -1,5 +1,5 @@
 .PHONY: all test
-BINARY_NAME := thumbpicker
+BINARY_NAME := ./bin/thumbpicker
 PKG := ./cmd/server/main.go
 
 .PHONY: build

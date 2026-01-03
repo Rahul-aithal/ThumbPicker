@@ -41,7 +41,7 @@ func Home() templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<form hx-encoding=\"multipart/form-data\" hx-post=\"/video\" _=\"on htmx:xhr:progress(loaded, total) set #progress.value to (loaded/total)*100\"><input type=\"file\" name=\"file\" accept=\".mp4\"> <button>Upload</button> <progress id=\"progress\" value=\"0\" max=\"100\"></progress></form>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<section class=\"upload-section\"><form class=\"upload-form\" hx-encoding=\"multipart/form-data\" hx-post=\"/video\"><label class=\"file-input\"><input type=\"file\" name=\"file\" accept=\".mp4\" onchange=\"handleVideoChange(this)\"> <span>Select video file</span></label> <button type=\"submit\">Upload</button></form><div class=\"video-preview-wrapper\"><video id=\"video-preview\" controls muted style=\"display: none\"></video></div></section><script>\n\t\t\tfunction handleVideoChange(input) {\n\t\t\t\tconst file = input.files && input.files[0];\n\n\t\t\t\t// update label\n\t\t\t\tinput.nextElementSibling.textContent =\n\t\t\t\t\tfile ? file.name : \"Select video file\";\n\n\t\t\t\tif (!file) return;\n\n\t\t\t\tconst video = document.getElementById(\"video-preview\");\n\n\t\t\t\t// reset old preview if any\n\t\t\t\tvideo.pause();\n\t\t\t\tvideo.removeAttribute(\"src\");\n\t\t\t\tvideo.load();\n\n\t\t\t\tvideo.src = URL.createObjectURL(file);\n\t\t\t\tvideo.style.display = \"block\";\n\t\t\t\tvideo.load();\n\t\t\t}\n\t\t</script>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

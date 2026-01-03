@@ -5,7 +5,6 @@ import (
 	"github.com/Rahul-aithal/ThumbPicker/common/types"
 )
 
-
 templ VideoImage(videoSrc string, thumbs []types.ThumbData) {
 	@Base() {
 		<div class="thumbnails">
@@ -15,10 +14,10 @@ templ VideoImage(videoSrc string, thumbs []types.ThumbData) {
 				</video>
 			</div>
 
-			<div class="thumb-list">
+			<div class="thumb-grid">
 				for _, t := range thumbs {
 					<div class="thumb-item">
-						<img src={ fmt.Sprint(t.Path) } alt="thumbnail" />
+						<img src={ fmt.Sprint(t.Path) } alt="Thumbnail frame" />
 
 						<p class="thumb-meta">
 							Frame { t.Index } — { t.TimeStamp }
@@ -36,3 +35,4 @@ templ VideoImage(videoSrc string, thumbs []types.ThumbData) {
 		</div>
 	}
 }
+

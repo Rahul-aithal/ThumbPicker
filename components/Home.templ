@@ -2,16 +2,53 @@ package components
 
 templ Home() {
 	@Base() {
-		<form
-			hx-encoding="multipart/form-data"
-			hx-post="/video"
-			_="on htmx:xhr:progress(loaded, total) set #progress.value to (loaded/total)*100"
-		>
-			<input type="file" name="file" accept=".mp4"/>
-			<button>
-				Upload
-			</button>
-			<progress id="progress" value="0" max="100"></progress>
-		</form>
+		<section class="upload-section">
+			<form
+				class="upload-form"
+				hx-encoding="multipart/form-data"
+				hx-post="/video"
+			>
+				<label class="file-input">
+					<input
+						type="file"
+						name="file"
+						accept=".mp4"
+						onchange="handleVideoChange(this)"
+					/>
+					<span>Select video file</span>
+				</label>
+				<button type="submit">Upload</button>
+			</form>
+			<div class="video-preview-wrapper">
+				<video
+					id="video-preview"
+					controls
+					muted
+					style="display: none"
+				></video>
+			</div>
+		</section>
+		<script>
+			function handleVideoChange(input) {
+				const file = input.files && input.files[0];
+
+				// update label
+				input.nextElementSibling.textContent =
+					file ? file.name : "Select video file";
+
+				if (!file) return;
+
+				const video = document.getElementById("video-preview");
+
+				// reset old preview if any
+				video.pause();
+				video.removeAttribute("src");
+				video.load();
+
+				video.src = URL.createObjectURL(file);
+				video.style.display = "block";
+				video.load();
+			}
+		</script>
 	}
 }
