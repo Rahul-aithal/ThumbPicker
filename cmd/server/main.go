@@ -49,8 +49,10 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Mount("/", routers.Routers(queries))
-	filesDir := http.Dir(filepath.Base("./pub"))
-	fileServer(r, "/pub", filesDir)
+	public:= http.Dir(filepath.Base("./pub"))
+	static:= http.Dir(filepath.Base("./static"))
+	fileServer(r, "/pub", public)
+	fileServer(r, "/static", static)
 	fmt.Println("Server is running at :4000")
 	http.ListenAndServe(":4000", r)
 }

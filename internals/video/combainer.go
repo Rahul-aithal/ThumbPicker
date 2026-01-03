@@ -5,18 +5,27 @@ import (
 	"fmt"
 	"os/exec"
 	"strings"
+
+	"github.com/google/uuid"
 )
 
-func Combainer(meta *Meta) error {
-	if meta == nil {
-		panic("No data found from user")
-	}
+type CombainerStruct struct {
+	FilePath      string
+	ThumbLocation string
+}
 
-	fmt.Println("Starting to add....")
+type combainerReturn struct {
+	FilePath string
+	FileName string
+}
+
+func Combainer(meta CombainerStruct) (combainerReturn, error) {
+
 	fileloc := meta.FilePath
-	imageLoc := meta.ThumbLocation[meta.SeletedThumbIndex]
+	imageLoc := meta.ThumbLocation
+	fmt.Println("Starting to add....", fileloc, imageLoc)
 	ext := strings.Split(meta.FilePath, ".")[1]
-	outputLoc := strings.Split(meta.FilePath, ".")[0] + "TT." + ext
+	outputLoc := strings.Split(meta.FilePath, ".")[0] + uuid.NewString()[0:8] + "." + ext
 	// ffmpeg -i input.mp4 -i thumbnail.png -map 1 -map 0 -c copy -disposition:0 attached_pic output.mp4
 	cmd := exec.Command("ffmpeg",
 		"-i",
@@ -40,8 +49,12 @@ func Combainer(meta *Meta) error {
 	err := cmd.Run()
 	if err != nil {
 		fmt.Println(fmt.Sprint(err) + ":" + stderr.String())
-		return err
+		return combainerReturn{}, err
 	}
 	fmt.Println(out.String())
-	return nil
+	outSlice := strings.Split(outputLoc, "/")
+	return combainerReturn{
+		FilePath: outputLoc,
+		FileName: outSlice[len(outSlice)-1],
+	}, nil
 }

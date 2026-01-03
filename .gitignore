@@ -28,7 +28,8 @@ go.work.sum
 .env
 
 *.mp4
-/pub
+/pub/*
+/pub/
 # Editor/IDE
 # .idea/
 # .vscode/

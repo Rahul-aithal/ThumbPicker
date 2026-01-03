@@ -38,8 +38,9 @@ func (h *handler) VideoPage(w http.ResponseWriter, r *http.Request) {
 			Path:      thumb.Src[1:],
 			TimeStamp: thumb.Timestamp,
 			Index:     int(i),
+			Id:        thumb.ID,
 		})
 	}
-	
-	components.VideoImage(video.Src, thumbDisplay).Render(r.Context(), w)
+
+	components.VideoImage(video.Src,  thumbDisplay).Render(r.Context(), w)
 }

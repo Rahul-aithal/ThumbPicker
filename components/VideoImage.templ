@@ -1,24 +1,36 @@
 package components
 
-import "github.com/Rahul-aithal/ThumbPicker/common/types"
+import (
+	"fmt"
+	"github.com/Rahul-aithal/ThumbPicker/common/types"
+)
+
 
 templ VideoImage(videoSrc string, thumbs []types.ThumbData) {
 	@Base() {
 		<div class="thumbnails">
 			<div class="video-wrapper">
 				<video muted controls>
-					<source src={ "/" + videoSrc }/>
+					<source src={ "/" + videoSrc } />
 				</video>
 			</div>
-			<div class="thumb-grid">
-				for _,t:=range thumbs {
-					<button hx-post="/downloadVideo" hx-vals={ `{inex: ${t.Index}}` } class="thumb-item">
-						<img src={ t.Path }/>
-						<div class="thumb-meta">
-							<span class="thumb-time">{ t.TimeStamp }</span>
-							<span class="thumb-index">{ t.Index }</span>
-						</div>
-					</button>
+
+			<div class="thumb-list">
+				for _, t := range thumbs {
+					<div class="thumb-item">
+						<img src={ fmt.Sprint(t.Path) } alt="thumbnail" />
+
+						<p class="thumb-meta">
+							Frame { t.Index } — { t.TimeStamp }
+						</p>
+
+						<a
+							href={ "/downloadVideo/" + fmt.Sprint(t.Id) }
+							target="_blank"
+						>
+							Download
+						</a>
+					</div>
 				}
 			</div>
 		</div>

@@ -18,6 +18,6 @@ func Routers(q *db.Queries) *chi.Mux {
 	r.Get("/", h.Home)
 	r.Get("/video/{id}", h.VideoPage)
 	r.Post("/video", h.Video)
-	// r.Post("/downloadVideo/")
+	r.Get("/downloadVideo/{id}",h.HandleDownload)
 	return r
 }
