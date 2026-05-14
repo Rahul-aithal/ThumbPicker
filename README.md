@@ -1,4 +1,4 @@
-# ThumbSelector
+# ThumbPicker
 
 [![Go](https://img.shields.io/badge/Go-1.21%2B-blue?logo=go&logoColor=white)](https://golang.org/)
 [![FFmpeg](https://img.shields.io/badge/FFmpeg-4.0%2B-orange?logo=ffmpeg&logoColor=white)](https://ffmpeg.org/)
