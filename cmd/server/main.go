@@ -15,10 +15,6 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-// Source - https://stackoverflow.com/q/65880069
-// Posted by Darien Miller
-// Retrieved 2025-12-14, License - CC BY-SA 4.0
-
 func main() {
 	const (
 		host     = "localhost"
