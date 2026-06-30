@@ -5,7 +5,7 @@
 
 A lightweight video thumbnail selection tool built in Go. Extract frames from videos at specific timestamps using FFmpeg, with plans for a smart UI picker and concurrent processing. Perfect for developers building media tools or learning Go hands-on.
 
-This project documents my journey from Go newbie to functional prototype—check out [Part 1 of the build log](https://medium.com/@rahul.aithal/building-thumbpicker-part-1-extracting-video-frames-with-go-123abc) for the full story, errors, and lessons learned.
+This project documents my journey from Go newbie to functional prototype—check out [Part 1 of the build log](https://medium.com/@aithalrahul34/building-thumbpicker-part-1-extracting-video-frames-with-go-96361f8cb145) for the full story, errors, and lessons learned.
 
 ## 🚀 Features
 
@@ -28,15 +28,15 @@ This project documents my journey from Go newbie to functional prototype—check
 
 2. **Clone the Repo:**
    ```bash
-   git clone https://github.com/Rahul-aithal/ThumbSelector.git
-   cd ThumbSelector
+   git clone https://github.com/Rahul-aithal/ThumbPicker.git
+   cd ThumbPicker
    ```
 
 3. **Build:**
    ```bash
-   go mod init github.com/Rahul-aithal/ThumbSelector  # If not already done
+   go mod init github.com/Rahul-aithal/ThumbPicker  # If not already done
    go mod tidy
-   go build -o thumbselector .
+   go build -o thumbpicker .
    ```
 
 ## 📖 Usage
@@ -45,7 +45,7 @@ This project documents my journey from Go newbie to functional prototype—check
 Run the tool to extract a frame at a specific timestamp from a video.
 
 ```bash
-./thumbselector -video input.mp4 -timestamp "00:01:23" -output frame.jpg
+./thumbpicker -video input.mp4 -timestamp "00:01:23" -output frame.jpg
 ```
 
 ### Example Code Snippet (Core Extraction Logic)
@@ -113,7 +113,7 @@ Outputs: `frame_00_01_23.jpg`, etc.
 
 ## 📁 Project Structure
 ```
-ThumbSelector/
+ThumbPicker/
 ├── main.go              # Entry point with extraction logic
 ├── go.mod               # Module dependencies
 ├── go.sum               # Dependency checksums
