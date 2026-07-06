@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -45,12 +46,17 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Mount("/", routers.Routers(queries))
-	public:= http.Dir(filepath.Base("./pub"))
-	static:= http.Dir(filepath.Base("./static"))
+	public := http.Dir(filepath.Base("./pub"))
+	static := http.Dir(filepath.Base("./static"))
 	fileServer(r, "/pub", public)
 	fileServer(r, "/static", static)
 	fmt.Println("Server is running at :4000")
-	http.ListenAndServe(":4000", r)
+	err = http.ListenAndServe(":4000", r)
+
+	if err != nil {
+		log.Fatalf("Failed to create server %v", err)
+		return
+	}
 }
 
 func fileServer(r chi.Router, serverRoute string, pathToStaticFolder http.FileSystem) {

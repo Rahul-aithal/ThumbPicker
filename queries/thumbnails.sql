@@ -4,7 +4,7 @@ WHERE id = $1 LIMIT 1;
 
 -- name: InsertThumbs :one
 INSERT INTO thumbnails(
- src,video,timestamp,idx
+ src,video,time_stamp,idx
 ) VALUES ( $1,$2,$3,$4)
 RETURNING *;
 

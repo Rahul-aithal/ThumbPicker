@@ -32,6 +32,11 @@ func (h *handler) VideoPage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	thumbs, err := h.q.GetAllThubmsOfVideo(r.Context(), uid)
+
+	if err != nil {
+		log.Fatalf("failed to get all thumbnails from db :%v", err)
+		return
+	}
 	thumbDisplay := make([]types.ThumbData, 0)
 	for i, thumb := range thumbs {
 		thumbDisplay = append(thumbDisplay, types.ThumbData{
@@ -42,5 +47,10 @@ func (h *handler) VideoPage(w http.ResponseWriter, r *http.Request) {
 		})
 	}
 
-	components.VideoImage(video.Src,  thumbDisplay).Render(r.Context(), w)
+	err = components.VideoImage(video.Src, thumbDisplay).Render(r.Context(), w)
+
+	if err != nil {
+		log.Fatalf("failed to render VideoImage page : %v", err)
+		return
+	}
 }
