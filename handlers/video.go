@@ -57,7 +57,7 @@ func (h *handler) Video(w http.ResponseWriter, r *http.Request) {
 		_, err := h.q.InsertThumbs(r.Context(), db.InsertThumbsParams{
 			Src:       result.ThumbLocation[i],
 			Video:     video.ID,
-			Timestamp: strconv.FormatFloat(result.TimeStamps[i], 'f', -1, 64),
+			TimeStamp: strconv.FormatFloat(result.TimeStamps[i], 'f', -1, 64),
 			Idx:       pgtype.Int4{Int32: int32(i), Valid: true},
 		})
 		if err != nil {

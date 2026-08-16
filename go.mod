@@ -1,11 +1,9 @@
 module github.com/Rahul-aithal/ThumbPicker
 
-go 1.23.0
-
-toolchain go1.24.11
+go 1.25.0
 
 require (
-	github.com/a-h/templ v0.3.960
+	github.com/a-h/templ v0.3.1020
 	github.com/go-chi/chi/v5 v5.2.3
 	github.com/google/uuid v1.6.0
 	github.com/jackc/pgx/v5 v5.7.6

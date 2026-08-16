@@ -41,7 +41,7 @@ func (h *handler) VideoPage(w http.ResponseWriter, r *http.Request) {
 	for i, thumb := range thumbs {
 		thumbDisplay = append(thumbDisplay, types.ThumbData{
 			Path:      thumb.Src[1:],
-			TimeStamp: thumb.Timestamp,
+			TimeStamp: thumb.TimeStamp,
 			Index:     int(i),
 			Id:        thumb.ID,
 		})

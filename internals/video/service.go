@@ -11,6 +11,8 @@ func Service(path string, options int) *Meta {
 	metap.NumberOfFrames = options
 	err := MetaData(metap)
 	if err != nil {
+		log.Fatal(err)
+
 		panic("Error while getting meta data")
 	}
 	err1 := Generator(metap)

@@ -7,13 +7,14 @@ build:
 	templ generate && \
 	go build -o $(BINARY_NAME) $(PKG)
 
-.PHONY: run_dev
-run_dev:build
-	./$(BINARY_NAME)
-
 .PHONY: run
 run:
-	./$(BINARY_NAME)
+	$(BINARY_NAME)
+
+.PHONY: run_dev
+run_dev:build 
+run_dev:run
+
 
 .PHONY: clean
 clean:

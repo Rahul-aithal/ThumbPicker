@@ -10,12 +10,14 @@ This project documents my journey from Go newbie to functional prototype—check
 ## 🚀 Features
 
 ### Current (Phase 1: ✅ Complete)
+
 - Extract single or multiple frames from videos at exact timestamps (e.g., `00:01:23`).
 - Convert video duration (seconds) to formatted timestamps (`HH:MM:SS`).
 - CLI-based execution via Go's `exec` package for seamless FFmpeg integration.
 - Handles basic error checking for slices, paths, and command args.
 
 ### Planned
+
 - **Phase 2:** Web or desktop UI for browsing/comparing extracted frames (using Fyne or Gin for web).
 - **Phase 3:** Smart frame analysis (quality scoring, auto-detection of key moments) + goroutines for concurrent processing.
 - **Phase 4:** Export selected thumbnails, API endpoints, and Docker deployment for production.
@@ -25,8 +27,10 @@ This project documents my journey from Go newbie to functional prototype—check
 1. **Prerequisites:**
    - Go 1.21+ ([install here](https://go.dev/doc/install)).
    - FFmpeg 4.0+ ([install here](https://ffmpeg.org/download.html))—tested on macOS/Linux; Windows should work with path setup.
-
+   - sqlc ([install here](https://docs.sqlc.dev/en/stable/overview/install.html)).
+   - templ ([install here](https://templ.guide/quick-start/installation)).
 2. **Clone the Repo:**
+
    ```bash
    git clone https://github.com/Rahul-aithal/ThumbPicker.git
    cd ThumbPicker
@@ -42,6 +46,7 @@ This project documents my journey from Go newbie to functional prototype—check
 ## 📖 Usage
 
 ### Basic Frame Extraction
+
 Run the tool to extract a frame at a specific timestamp from a video.
 
 ```bash
@@ -49,6 +54,7 @@ Run the tool to extract a frame at a specific timestamp from a video.
 ```
 
 ### Example Code Snippet (Core Extraction Logic)
+
 Here's the heart of Phase 1—feel free to tweak in `main.go`:
 
 ```go
@@ -105,13 +111,17 @@ func main() {
 - **Pro Tip:** Always append to slices (`timestamps = append(timestamps, "00:01:23")`) to avoid index errors—slices aren't fixed like arrays!
 
 ### Testing
+
 Drop a sample video (`sample.mp4`) in the root, then run:
+
 ```bash
 go run main.go
 ```
+
 Outputs: `frame_00_01_23.jpg`, etc.
 
 ## 📁 Project Structure
+
 ```
 ThumbPicker/
 ├── main.go              # Entry point with extraction logic
@@ -123,6 +133,7 @@ ThumbPicker/
 ```
 
 ## 🗺️ Roadmap
+
 - **Part 1:** Frame Extraction (Done—see blog for the gritty details).
 - **Part 2:** UI for frame selection (Coming soon—Fyne? Web? Votes in issues?).
 - **Part 3:** Concurrency & Optimization.
@@ -131,6 +142,7 @@ ThumbPicker/
 Follow the series on [Medium](https://medium.com/@aithalrahul34) .
 
 ## 🤝 Contributing
+
 1. Fork the repo.
 2. Create a feature branch (`git checkout -b feature/amazing-ui`).
 3. Commit changes (`git commit -m "Add UI picker"`).
@@ -139,9 +151,11 @@ Follow the series on [Medium](https://medium.com/@aithalrahul34) .
 Bug reports or Go/FFmpeg tips? Open an issue—love hearing from fellow builders!
 
 ## 📄 License
+
 MIT License—use it, tweak it, build on it. See [LICENSE](LICENSE)
 
 ## 🙏 Acknowledgments
+
 - [Go Slices Intro](https://go.dev/blog/slices-intro) for saving my sanity.
 - [FFmpeg Docs](https://ffmpeg.org/documentation.html) for endless args.
 - That 1-hour YouTube tutorial (shoutout: https://youtu.be/8uiZC0l4Ajw).

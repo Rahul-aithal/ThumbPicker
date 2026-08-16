@@ -10,24 +10,21 @@ templ VideoImage(videoSrc string, thumbs []types.ThumbData) {
 		<div class="thumbnails">
 			<div class="video-wrapper">
 				<video muted controls>
-					<source src={ "/" + videoSrc } />
+					<source src={ "/" + videoSrc }/>
 				</video>
 			</div>
-
 			<div class="thumb-grid">
 				for _, t := range thumbs {
 					<div class="thumb-item">
-						<img src={ fmt.Sprint(t.Path) } alt="Thumbnail frame" />
-
+						<img src={ fmt.Sprint(t.Path) } alt="Thumbnail frame"/>
 						<p class="thumb-meta">
 							Frame { t.Index } — { t.TimeStamp }
 						</p>
-
 						<a
 							href={ "/downloadVideo/" + fmt.Sprint(t.Id) }
 							target="_blank"
 						>
-							Download
+							Download video with this as thumbnail
 						</a>
 					</div>
 				}
@@ -35,4 +32,3 @@ templ VideoImage(videoSrc string, thumbs []types.ThumbData) {
 		</div>
 	}
 }
-
